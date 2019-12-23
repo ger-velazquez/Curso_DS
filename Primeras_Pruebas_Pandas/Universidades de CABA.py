@@ -13,6 +13,7 @@
 
 
 import pandas as pd
+import numpy as np
 
 
 # Vamos a levantar el CSV y a revisar qué tiene...
