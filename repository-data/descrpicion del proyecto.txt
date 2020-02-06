@@ -1,0 +1,48 @@
+Tenemos información sobre repositorios de todo el mundo:
+- país
+- lat. y long.
+- tipo de repositorio (temático, institucional, general...)
+- idiomas
+- temas que abarcan (ej. Educación, Artes y Humanidades, Tecnología)
+- tipos de contenidos que alojan (artículos, tesis, libros, etc.)
+- políticas (de datos, de depósito, de acceso)
+- software que utilizan (dspace, fedora, eprints, etc..) y versión del software
+- estado del repositorio (en funcionamiento, cerrado)
+
+Sobre los datos:
+Fuente de datos: OpenDoar (Sherpa)
+Método de obtención de datos: Sherpa v2 API REST 
+Formato de los datos: 
+Los registros están en formato JSON, separados en archivos de 100 registros cada uno (por restricciones de la API)
+Muchos de los datos están normalizados, y para ellos se incluye el ID del término normalizado.
+
+Tareas:
+1. Entender cómo está organizado cada registro de datos (https://app.swaggerhub.com/apis/gobfrey/v2.sherpa-api/2.0)
+
+2. Pasar los datos a CSV
+    Opción 1: Unificiar los JSON en uno solo, y pasar ese gran JSON a CSV
+    Opción 2: Procesar JSON de a uno, enviándolos a un único CSV
+
+3. Revisar los datos: valores que no tienen sentido, datos repetidos (no debería...), datos fuera de límites esperables, etc. Aplicar ajustes y normalizaciones cuando sea necesario
+
+4. Generar algunas visualizaciones sobre los datos, como ser:
+ -- geolocalización (tenemos latitud y longitud)
+ -- mapas de calor (lugares, países, continentes con más o menos repositorios)
+ -- distribución de repositorios por país, por software, etc..
+ Aquí hay algunos ejemplos, que nos sirven para ver si estamos procesando bien los datos: https://v2.sherpa.ac.uk/view/repository_visualisations/1.html 
+
+5. Encontrar correlaciones entre pares de características.
+
+6. Pensar algún ANOVA que se pueda realizar sobre algunas características
+
+7. Pensar modelos de regresión a aplicar sobre los datos. Algunas predicciones que serían interesante obtener:
+-- tipo de repositorio -> software
+-- país, idiomas --> tipo de repositorio
+-- estado del repositorio --> pais
+-- área temática --> tipo de repositorio
+
+
+8. Sería interesante complementar estos datos con la cantidad de recursos que aloja cada repositorio. Habría que ver si existe alguna API (de OpenDoar o de otro servicio) que permita obtener este dato programáticamente.
+Sino, podemos enfocarnos en una región, como por ejemplo América Latina (y usar algún servicio tipo http://lareferencia.info/vufind/Search/Advanced ) o sólo Argentina (y usar http://repositoriosdigitales.mincyt.gob.ar/vufind/). En estos casos,
+la cantidad de recursos que se muestran no es la que tienen los repositorios, sino la que las políticas del MinCyT deciden (sólo tesis, artículos y patentes). Pero al menos nos sirve para obtener las URL de los 
+repositorios, y recolectar los datos a mano (Argentina tiene unas pocas decenas de repositorios, y en todo Latinoamérica habrá unos 150 o 200, no creo que mucho más...)
